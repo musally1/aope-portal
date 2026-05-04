@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A.O.P.E Student Portal</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f2f4f8;
+}
+
+/* LOADING */
+#loadingScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#003366;
+color:white;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.spinner{
+border:6px solid #ccc;
+border-top:6px solid white;
+border-radius:50%;
+width:50px;
+height:50px;
+animation:spin 1s linear infinite;
+margin-bottom:10px;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}
+
+/* HEADER */
+.header{
+background:#003366;
+color:white;
+padding:10px;
+display:flex;
+align-items:center;
+}
+
+.header img{
+height:50px;
+margin-right:10px;
+}
+
+/* LOGIN */
+.login{
+max-width:350px;
+margin:80px auto;
+background:white;
+padding:20px;
+border-radius:8px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:#003366;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.error{color:red;}
+
+/* LAYOUT */
+.wrapper{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:220px;
+background:#012a4a;
+height:100vh;
+color:white;
+padding-top:20px;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:12px;
+text-decoration:none;
+cursor:pointer;
+}
+
+.sidebar a:hover{
+background:#01497c;
+}
+
+/* MAIN */
+.main{
+flex:1;
+padding:20px;
+}
+
+/* CARD */
+.card{
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:6px;
+box-shadow:0 0 8px rgba(0,0,0,0.1);
+animation:fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* NOTICE */
+.notice-bar{
+background:#d32f2f;
+color:white;
+padding:10px;
+overflow:hidden;
+white-space:nowrap;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.notice-text{
+display:inline-block;
+padding-left:100%;
+animation:scroll 12s linear infinite;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
+
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th{
+background:#0d47a1;
+color:white;
+padding:10px;
+}
+
+td{
+text-align:center;
+padding:10px;
+border:1px solid #ccc;
+}
+
+tr:nth-child(even){
+background:#e3f2fd;
+}
+
+.break{
+background:#eee;
+font-weight:bold;
+}
+
+.hidden{display:none;}
+
+/* RECEIPT */
+#receiptBox{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+#receiptBox div{
+background:white;
+padding:20px;
+width:300px;
+border-radius:8px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loadingScreen">
+<div class="spinner"></div>
+<h3>Verifying Credentials...</h3>
+<p>Please wait 15 seconds</p>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/University_of_Ibadan_logo.png/640px-University_of_Ibadan_logo.png">
+<h3>Adeseun Ogundoyin Polytechnic Eruwa - Student Portal</h3>
+</div>
+
+<!-- LOGIN -->
+<div id="loginPage" class="login">
+<h3>Login</h3>
+<input type="text" id="matric" placeholder="Matric Number">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="error" class="error"></p>
+</div>
+
+<!-- PORTAL -->
+<div id="portal" class="wrapper hidden">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<a onclick="show('dashboard')">Dashboard</a>
+<a onclick="show('profile')">Profile</a>
+<a onclick="show('courses')">Courses</a>
+<a onclick="show('results')">Results</a>
+<a onclick="show('timetable')">Timetable</a>
+<a onclick="show('payment')">Payment</a>
+<a onclick="logout()">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div id="dashboard" class="page">
+
+<div class="notice-bar">
+<div class="notice-text">
+🚨 EXAM STARTS ON 06/05/2026 — ALL STUDENTS SHOULD PREPARE EARLY 🚨
+</div>
+</div>
+
+<div class="card">
+<h3>Welcome Student</h3>
+</div>
+
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="page hidden">
+<div class="card">
+<h3>Profile</h3>
+<p>Name: Isau Musa Ayomide</p>
+<p>Matric: 202550023201JA</p>
+</div>
+</div>
+
+<!-- COURSES -->
+<div id="courses" class="page hidden">
+<div class="card">
+<h3>Courses</h3>
+<p>CSC101, CSC102, MTH101</p>
+</div>
+</div>
+
+<!-- RESULTS -->
+<div id="results" class="page hidden">
+<div class="card">
+<h3>Results</h3>
+<p>CSC101: A</p>
+<p>CSC102: B</p>
+</div>
+</div>
+
+<!-- TIMETABLE -->
+<div id="timetable" class="page hidden">
+<div class="card">
+<h3>Timetable</h3>
+
+<table>
+<tr>
+<th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th>
+</tr>
+
+<tr>
+<td>8-10</td><td>CSC103</td><td>CSC104</td><td>STA111</td><td>MTH112</td><td>GNS202</td>
+</tr>
+
+<tr>
+<td>10-12</td><td>MTH112</td><td>EED112</td><td>CSC103</td><td>CSC104</td><td>CSC101</td>
+</tr>
+
+<tr class="break">
+<td>12-2</td><td colspan="5">BREAK</td>
+</tr>
+
+<tr>
+<td>2-5</td><td>EED112</td><td>LAB</td><td>STUDY</td><td>FREE</td><td>EED112</td>
+</tr>
+
+</table>
+</div>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="page hidden">
+
+<div class="card">
+<h3>School Fees</h3>
+<button>
+<a style="color:white;text-decoration:none;" href="https://flutterwave.com/pay/31rutdjq8div" target="_blank">Pay Fees</a>
+</button>
+</div>
+
+<div class="card">
+<h3>SIWES / CIWES (₦5000)</h3>
+<button onclick="receipt('SIWES')">Pay SIWES</button>
+</div>
+
+<div class="card">
+<h3>CBT Exam (₦5000)</h3>
+<button onclick="receipt('CBT')">Pay CBT</button>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- RECEIPT -->
+<div id="receiptBox">
+<div>
+<h3>Payment Receipt</h3>
+<p id="rType"></p>
+<p>Amount: ₦5000</p>
+<p id="rId"></p>
+<button onclick="window.print()">Print</button>
+<button onclick="closeReceipt()">Close</button>
+</div>
+</div>
+
+<script>
+
+function login(){
+let m=document.getElementById("matric").value;
+let p=document.getElementById("password").value;
+
+if(m==="202550023201JA" && p==="Musa@123"){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("loadingScreen").style.display="flex";
+
+setTimeout(()=>{
+document.getElementById("loadingScreen").style.display="none";
+document.getElementById("portal").classList.remove("hidden");
+},15000);
+
+}else{
+document.getElementById("error").innerText="Invalid login details";
+}
+}
+
+function logout(){
+location.reload();
+}
+
+function show(page){
+document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
+document.getElementById(page).classList.remove("hidden");
+}
+
+function receipt(type){
+document.getElementById("receiptBox").style.display="flex";
+document.getElementById("rType").innerText="Type: "+type;
+document.getElementById("rId").innerText="TXN"+Math.floor(Math.random()*999999);
+}
+
+function closeReceipt(){
+document.getElementById("receiptBox").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
