@@ -1,0 +1,68 @@
+# 🎓 A.O.P.E Student Portal (Demo Project)
+
+This is a simple web-based student portal built for **Adeseun Ogundoyin Polytechnic, Eruwa** as a school project.
+
+---
+
+## 📌 Features
+
+- 🔐 Student Login System (Matric Number + Password)
+- ⏳ 15-Second Loading Animation after login
+- 🏠 Student Dashboard
+- 👤 Profile Page
+- 📚 Courses Page
+- 📊 Results Page
+- 📅 Timetable
+- 💳 Payment Section (School Fees, SIWES, CBT)
+- 🧾 Receipt Generator (Popup + Print option)
+- 🟢 Second Semester Active Status
+- 📢 Animated Notice Board
+
+---
+
+## 🔑 Login Details (Demo)
+
+- **Matric Number:** 202550023201JA  
+- **Password:** Musa@123  
+
+---
+
+## 💰 Payment Links
+
+- School Fees: https://flutterwave.com/pay/31rutdjq8div  
+- SIWES: https://flutterwave.com/pay/fspidxqdijlr  
+- CBT: https://flutterwave.com/pay/k9xxilbndvpz  
+
+---
+
+## ⚠️ Disclaimer
+
+This project is for **educational purposes only** and not an official school portal.
+
+---
+
+## 👨‍💻 Developer
+
+Name: Isau Musa Ayomide  
+Department: Computer Science  
+Institution: Adeseun Ogundoyin Polytechnic, Eruwa  
+
+---
+
+## 🚀 How to Run
+
+1. Download or clone the repository  
+2. Open `index.html` in any browser  
+3. Login using the credentials above  
+
+---
+
+## 🌐 Live Demo
+
+(If GitHub Pages is enabled, your link will appear here)
+
+---
+
+## 📷 Preview
+
+A simple student portal UI with dashboard, timetable, results, and payment system.
